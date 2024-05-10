@@ -1,5 +1,7 @@
 package main;
 
+import Customer.Customer;
+import Delivery.DeliveryDriver;
 import restaurant.*;
 
 public class MainDriver {
@@ -48,7 +50,11 @@ public class MainDriver {
 
         Customer c1 = new Customer(deliveryPlatform, "Vegan");
 
-        c1.placeOrder(thaiRestaurant, 3, "");
+        Order order = c1.placeOrder(thaiRestaurant, 3, "");
 
+        DeliveryDriver assignedDriver = order.getDriver();
+
+        assignedDriver.pickUpOrder();
+        assignedDriver.deliverOrder();
     }
 }

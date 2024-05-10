@@ -1,6 +1,8 @@
 package restaurant;
 
 import java.util.*;
+
+import main.CPPFoodDelivery;
 import restaurant.adapters.*;
 
 
@@ -14,6 +16,8 @@ public class Restaurant {
     private List<Meal> menu;
 
     private DietaryAdapter mealAdapter;
+
+    private CPPFoodDelivery platform;
 
     private Restaurant(Builder builder) {
         this.name = builder.name;
@@ -38,6 +42,10 @@ public class Restaurant {
     public Meal getMeal(int menuChoice, String dietaryRestrictions, String... toppings){
         Meal meal = menu.get(menuChoice);
         return mealAdapter.adaptMeal(meal, dietaryRestrictions);
+    }
+
+    public void setPlatform(CPPFoodDelivery platform) {
+        this.platform = platform;
     }
 
     public static class Builder{

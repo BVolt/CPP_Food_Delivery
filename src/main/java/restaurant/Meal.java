@@ -6,9 +6,6 @@ public class Meal {
     protected String carbs;
     protected String fats;
 
-    public Meal(){}
-
-
     public Meal(String name, String protein, String carbs, String fats) {
         this.name = name;
         this.protein = protein;

@@ -1,9 +1,11 @@
 package restaurant;
 
-import main.*;
+import Customer.Customer;
+import Delivery.DeliveryDriver;
 
 import java.beans.PropertyChangeSupport;
 import java.beans.PropertyChangeListener;
+import java.time.*;
 
 public class Order {
     private Restaurant restaurant;
@@ -13,6 +15,11 @@ public class Order {
     private DeliveryDriver driver;
     private  PropertyChangeSupport support = new PropertyChangeSupport(this);
     private String state;
+    private LocalDateTime creationTime;
+
+    private LocalDateTime pickUpTime;
+
+    private LocalDateTime deliveredTime;
 
 
     public Order(Restaurant restaurant, Customer customer, Meal meal, DeliveryDriver driver) {
@@ -32,9 +39,36 @@ public class Order {
     public void setState(String state){
         support.firePropertyChange("state", this.state, state);
         this.state = state;
+        if(state.equals("Ready For Pickup")){
+            this.creationTime = LocalDateTime.now();
+        }else if(state.equals("Order Out For Delivery")){
+            this.pickUpTime = LocalDateTime.now();
+        }else {
+            this.deliveredTime = LocalDateTime.now();
+        }
+    }
+
+    public DeliveryDriver getDriver(){
+        return this.driver;
     }
 
     public Meal getMeal() {
         return meal;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "restaurant=" + restaurant +
+                ", customer=" + customer +
+                ", dietaryRestriction='" + dietaryRestriction + '\'' +
+                ", meal=" + meal +
+                ", driver=" + driver +
+                ", support=" + support +
+                ", state='" + state + '\'' +
+                ", creationTime=" + creationTime +
+                ", pickUpTime=" + pickUpTime +
+                ", deliveredTime=" + deliveredTime +
+                '}';
     }
 }

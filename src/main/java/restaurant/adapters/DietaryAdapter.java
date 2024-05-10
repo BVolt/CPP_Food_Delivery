@@ -21,7 +21,7 @@ public interface DietaryAdapter {
             String adaptedCarbs = substitutes.getOrDefault(originalMeal.getCarbs(), originalMeal.getCarbs());
             String adaptedFats = originalMeal.getFats();
 
-            return new Meal("Adapted " + originalMeal.getName(), adaptedProtein, adaptedCarbs, adaptedFats);
+            return new Meal(dietaryRestriction+" adapted " + originalMeal.getName(), adaptedProtein, adaptedCarbs, adaptedFats);
         }
 
         return originalMeal;

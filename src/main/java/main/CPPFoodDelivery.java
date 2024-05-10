@@ -1,6 +1,8 @@
 package main;
 
 
+import Customer.Customer;
+import Delivery.DeliveryDriver;
 import restaurant.*;
 import java.util.*;
 
@@ -10,10 +12,13 @@ public class CPPFoodDelivery {
     private List<Customer> customers;
     private List<DeliveryDriver> drivers;
 
+    private Map<DeliveryDriver, Order> assignedOrders;
+
     private CPPFoodDelivery(){
         restaurants = new ArrayList<>();
         customers = new ArrayList<>();
         drivers = new ArrayList<>();
+        assignedOrders = new HashMap<>();
     }
 
     public static CPPFoodDelivery getInstance(){
@@ -25,13 +30,16 @@ public class CPPFoodDelivery {
 
     public void register(Restaurant restaurant){
         restaurants.add(restaurant);
+        restaurant.setPlatform(this);
     }
 
     public void register(Customer customer){
         customers.add(customer);
+        customer.setPlatform(this);
     }
     public void register(DeliveryDriver driver){
         drivers.add(driver);
+        driver.setPlatform(this);
     }
 
     public Order placeOrder(Restaurant restaurant, Customer customer, int MenuChoice, String... toppings){
@@ -52,8 +60,10 @@ public class CPPFoodDelivery {
         Meal meal = restaurant.getMeal(MenuChoice, customer.getDietaryRestriction() , toppings);
         System.out.println(meal);
 
-        return new Order(restaurant, customer, meal, driver);
+        Order order = new Order(restaurant, customer, meal, driver);
+        assignedOrders.put(driver, order);
 
+        return order;
     }
 
     public DeliveryDriver findDeliveryDriver(Restaurant restaurant) {
@@ -65,4 +75,13 @@ public class CPPFoodDelivery {
         return null;
     }
 
+    public void pickUpOrder(DeliveryDriver driver){
+        Order order = assignedOrders.get(driver);
+        order.setState("Order Out For Delivery");
+    }
+
+    public void deliverOrder(DeliveryDriver driver){
+        Order order = assignedOrders.get(driver);
+        order.setState("Order Delivered");
+    }
 }

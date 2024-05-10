@@ -1,11 +1,11 @@
-package main;
+package Customer;
 
+import main.CPPFoodDelivery;
 import restaurant.Order;
 import restaurant.Restaurant;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
 
 public class Customer implements PropertyChangeListener {
     private CPPFoodDelivery deliveryPlatform;
@@ -27,6 +27,10 @@ public class Customer implements PropertyChangeListener {
 
     public void propertyChange(PropertyChangeEvent event){
         System.out.println(event.getNewValue());
+    }
+
+    public void setPlatform(CPPFoodDelivery platform){
+        this.deliveryPlatform = platform;
     }
 
 }
