@@ -45,14 +45,14 @@ public class MainDriver {
         deliveryPlatform.register(americanDiner);
 
 
-        DeliveryDriver george = new DeliveryDriver("LA County", 3);
+        DeliveryDriver george = new DeliveryDriver("LA County", 2);
         deliveryPlatform.register(george);
 
         Customer c1 = new Customer(deliveryPlatform, "Vegan");
         deliveryPlatform.register(c1);
 
 
-        Order order = c1.placeOrder(thaiRestaurant, 3, "");
+        Order order = c1.placeOrder(thaiRestaurant, 3, "Sesame Seeds", "Wasabi");
         if(order != null) {
             DeliveryDriver assignedDriver = order.getDriver();
             assignedDriver.pickUpOrder();

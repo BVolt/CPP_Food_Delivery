@@ -47,7 +47,14 @@ public class Restaurant {
 
     public Meal getMeal(int menuChoice, String dietaryRestrictions, String... toppings){
         Meal meal = menu.get(menuChoice);
-        return mealAdapter.adaptMeal(meal, dietaryRestrictions);
+        meal = mealAdapter.adaptMeal(meal, dietaryRestrictions);
+        for(String topping: toppings){
+            if(this.toppings.contains(topping))
+                meal = new MealWithToppings(meal, topping);
+            else
+                System.out.println("Topping not present on the menu");
+        }
+        return meal;
     }
 
     public void setPlatform(CPPFoodDelivery platform) {
@@ -97,10 +104,10 @@ public class Restaurant {
             switch (cuisineType.toLowerCase()) {
                 case "italian":
                     menu = Arrays.asList(
-                            new Meal("Margherita Pizza", "Cheese", "Wheat Crust", "Olive Oil"),
-                            new Meal("Pesto Pasta", "Chicken", "Wheat Pasta", "Pesto Sauce"),
-                            new Meal("Caprese Salad", "Mozzarella", "Tomato", "Basil"),
-                            new Meal("Minestrone Soup", "Mixed Vegetables", "Pasta", "Olive Oil")
+                            new BasicMeal("Margherita Pizza", "Cheese", "Wheat Crust", "Olive Oil"),
+                            new BasicMeal("Pesto Pasta", "Chicken", "Wheat Pasta", "Pesto Sauce"),
+                            new BasicMeal("Caprese Salad", "Mozzarella", "Tomato", "Basil"),
+                            new BasicMeal("Minestrone Soup", "Mixed Vegetables", "Pasta", "Olive Oil")
                     );
                     toppings = Arrays.asList("Extra Cheese", "Pepperoni", "Olives");
                     mealAdapter = new ItalianRestaurantAdapter();
@@ -108,10 +115,10 @@ public class Restaurant {
 
                 case "thai":
                     menu = Arrays.asList(
-                            new Meal("Sushi Roll", "Tuna", "Rice", "Seaweed"),
-                            new Meal("Stir Fry", "Beef", "Mixed Vegetables", "Soy Sauce"),
-                            new Meal("Ramen", "Pork", "Egg Noodles", "Broth"),
-                            new Meal("Rice Bowl", "Chicken", "Vegetables", "Rice")
+                            new BasicMeal("Sushi Roll", "Tuna", "Rice", "Seaweed"),
+                            new BasicMeal("Stir Fry", "Beef", "Mixed Vegetables", "Soy Sauce"),
+                            new BasicMeal("Ramen", "Pork", "Egg Noodles", "Broth"),
+                            new BasicMeal("Rice Bowl", "Chicken", "Vegetables", "Rice")
                     );
                     toppings = Arrays.asList("Sesame Seeds", "Wasabi", "Soy Sauce");
                     mealAdapter = new ThaiRestaurantAdapter();
@@ -119,10 +126,10 @@ public class Restaurant {
 
                 case "american diner":
                     menu = Arrays.asList(
-                            new Meal("Cheeseburger", "Beef Patty", "Wheat Bun", "Cheese"),
-                            new Meal("Club Sandwich", "Turkey", "Bread", "Bacon"),
-                            new Meal("Mac & Cheese", "Macaroni", "Cheese", "Butter"),
-                            new Meal("Fries and Wings Combo", "Chicken Wings", "Fries", "Barbecue Sauce")
+                            new BasicMeal("Cheeseburger", "Beef Patty", "Wheat Bun", "Cheese"),
+                            new BasicMeal("Club Sandwich", "Turkey", "Bread", "Bacon"),
+                            new BasicMeal("Mac & Cheese", "Macaroni", "Cheese", "Butter"),
+                            new BasicMeal("Fries and Wings Combo", "Chicken Wings", "Fries", "Barbecue Sauce")
                     );
                     toppings = Arrays.asList("Ketchup", "Pickles", "Mustard");
                     mealAdapter = new AmericanDinerAdapter();
@@ -130,10 +137,10 @@ public class Restaurant {
 
                 case "mexican":
                     menu = Arrays.asList(
-                            new Meal("Chicken Taco", "Chicken", "Wheat Tortilla", "Lard"),
-                            new Meal("Beef Burrito", "Beef", "Wheat Tortilla", "Cheese"),
-                            new Meal("Pork Tostada", "Pork", "Corn Tortilla", "Lard"),
-                            new Meal("Quesadilla", "Cheese", "Wheat Tortilla", "Butter")
+                            new BasicMeal("Chicken Taco", "Chicken", "Wheat Tortilla", "Lard"),
+                            new BasicMeal("Beef Burrito", "Beef", "Wheat Tortilla", "Cheese"),
+                            new BasicMeal("Pork Tostada", "Pork", "Corn Tortilla", "Lard"),
+                            new BasicMeal("Quesadilla", "Cheese", "Wheat Tortilla", "Butter")
                     );
                     toppings = Arrays.asList("Guacamole", "Sour Cream", "Salsa");
                     mealAdapter = new MexicanRestaurantAdapter();

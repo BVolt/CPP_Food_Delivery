@@ -55,6 +55,11 @@ public class DeliveryDriver {
 
     public boolean isOnShift() {
         LocalDateTime now = LocalDateTime.now();
-        return !now.isBefore(shiftStart) && !now.isAfter(shiftEnd);
+        if (shiftNumber == 2) {
+            return !now.isBefore(shiftStart) || !now.isAfter(shiftEnd);
+        } else {
+            return !now.isBefore(shiftStart) && !now.isAfter(shiftEnd);
+        }
     }
+
 }
