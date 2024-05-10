@@ -4,7 +4,7 @@ import main.CPPFoodDelivery;
 
 public class DeliveryDriver {
     private CPPFoodDelivery platform;
-    private String county = "";
+    private String county = "LA County";
 
     public void pickUpOrder(){
         platform.pickUpOrder(this);

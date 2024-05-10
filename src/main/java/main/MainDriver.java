@@ -49,13 +49,15 @@ public class MainDriver {
         deliveryPlatform.register(george);
 
         Customer c1 = new Customer(deliveryPlatform, "Vegan");
+        deliveryPlatform.register(c1);
+
 
         Order order = c1.placeOrder(thaiRestaurant, 3, "");
-
-        DeliveryDriver assignedDriver = order.getDriver();
-
-        assignedDriver.pickUpOrder();
-        assignedDriver.deliverOrder();
+        if(order != null) {
+            DeliveryDriver assignedDriver = order.getDriver();
+            assignedDriver.pickUpOrder();
+            assignedDriver.deliverOrder();
+        }
 
         c1.placeOrder(mexicanRestaurant, 3, ""); //Show restaurant is not open
     }

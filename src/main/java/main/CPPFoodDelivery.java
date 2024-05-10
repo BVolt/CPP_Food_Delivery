@@ -43,6 +43,16 @@ public class CPPFoodDelivery {
     }
 
     public Order placeOrder(Restaurant restaurant, Customer customer, int MenuChoice, String... toppings){
+        if(!customers.contains(customer)){
+            System.out.println("Customer not registered");
+            return null;
+        }
+
+        if(!restaurants.contains(restaurant)){
+            System.out.println("Restaurant not registerd");
+            return null;
+        }
+
         //Check if open
         if(!restaurant.isOpen()){
             System.out.println("Restaurant is not open!");
@@ -68,7 +78,7 @@ public class CPPFoodDelivery {
 
     public DeliveryDriver findDeliveryDriver(Restaurant restaurant) {
         for (DeliveryDriver driver : drivers) {
-            if (driver.isOnShift() && driver.getCounty().equals(restaurant.getCounty())) {
+            if (driver.isOnShift() && driver.getCounty().equals(restaurant.getCounty()) && !assignedOrders.containsKey(driver)) {
                 return driver;
             }
         }
@@ -83,5 +93,6 @@ public class CPPFoodDelivery {
     public void deliverOrder(DeliveryDriver driver){
         Order order = assignedOrders.get(driver);
         order.setState("Order Delivered");
+        assignedOrders.remove(driver);
     }
 }

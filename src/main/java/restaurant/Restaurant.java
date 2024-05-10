@@ -42,7 +42,7 @@ public class Restaurant {
     }
 
     public String getCounty(){
-        return "";
+        return this.county;
     }
 
     public Meal getMeal(int menuChoice, String dietaryRestrictions, String... toppings){
