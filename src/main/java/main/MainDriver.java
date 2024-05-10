@@ -12,28 +12,28 @@ public class MainDriver {
         Restaurant thaiRestaurant = new Restaurant.Builder()
                 .name("That Thai Place")
                 .address("123 Street")
-                .operatingHours("10AM-11PM")
+                .operatingHours("10:00", "23:00")
                 .county("LA County")
                 .cuisineType("Thai")
                 .build();
         Restaurant mexicanRestaurant = new Restaurant.Builder()
                 .name("Fast and Fiesta")
                 .address("354 Street")
-                .operatingHours("12AM-1PM")
+                .operatingHours("00:00", "13:00")
                 .county("LA County")
                 .cuisineType("Thai")
                 .build();
         Restaurant italianRestaurant = new Restaurant.Builder()
                 .name("Litaly")
                 .address("367 Street")
-                .operatingHours("8AM-9PM")
+                .operatingHours("08:00", "21:00")
                 .county("Orange County")
                 .cuisineType("Thai")
                 .build();
         Restaurant americanDiner = new Restaurant.Builder()
                 .name("The Die ner")
                 .address("5565 Street")
-                .operatingHours("6AM-5PM")
+                .operatingHours("06:00", "17:00")
                 .county("San Bernardino County")
                 .cuisineType("Thai")
                 .build();
@@ -56,5 +56,7 @@ public class MainDriver {
 
         assignedDriver.pickUpOrder();
         assignedDriver.deliverOrder();
+
+        c1.placeOrder(mexicanRestaurant, 3, ""); //Show restaurant is not open
     }
 }

@@ -45,7 +45,7 @@ public class CPPFoodDelivery {
     public Order placeOrder(Restaurant restaurant, Customer customer, int MenuChoice, String... toppings){
         //Check if open
         if(!restaurant.isOpen()){
-            System.out.println("restaurant.Restaurant is not open!");
+            System.out.println("Restaurant is not open!");
             return null;
         }
 

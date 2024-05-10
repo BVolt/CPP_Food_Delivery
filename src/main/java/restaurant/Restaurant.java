@@ -1,6 +1,8 @@
 package restaurant;
 
+import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.time.*;
 
 import main.CPPFoodDelivery;
 import restaurant.adapters.*;
@@ -10,7 +12,9 @@ public class Restaurant {
     private String name;
     private String address;
     private String county;
-    private String operatingHours;
+    private LocalTime openingTime;
+    private LocalTime closingTime;
+
     private String cuisineType;
     private List<String> toppings; // Assume toppings are strings for simplicity
     private List<Meal> menu;
@@ -23,7 +27,8 @@ public class Restaurant {
         this.name = builder.name;
         this.address = builder.address;
         this.county = builder.county;
-        this.operatingHours = builder.operatingHours;
+        this.openingTime = builder.openingTime;
+        this.closingTime = builder.closingTime;
         this.cuisineType = builder.cuisineType;
         this.toppings = builder.toppings;
         this.menu = builder.menu;
@@ -31,8 +36,9 @@ public class Restaurant {
     }
 
 
-    public boolean isOpen(){
-        return true;
+    public boolean isOpen() {
+        LocalTime now = LocalTime.now();
+        return !now.isBefore(openingTime) && !now.isAfter(closingTime);
     }
 
     public String getCounty(){
@@ -52,7 +58,8 @@ public class Restaurant {
         private String name;
         private String address;
         private String county;
-        private String operatingHours;
+        private LocalTime openingTime;
+        private LocalTime closingTime;
         private String cuisineType;
         private List<String> toppings = new ArrayList<>();
         private List<Meal> menu = new ArrayList<>();
@@ -74,8 +81,10 @@ public class Restaurant {
             return this;
         }
 
-        public Builder operatingHours(String hours) {
-            this.operatingHours = hours;
+        public Builder operatingHours(String openingHours, String closingHours) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+            this.openingTime = LocalTime.parse(openingHours, formatter);
+            this.closingTime = LocalTime.parse(closingHours, formatter);
             return this;
         }
 
