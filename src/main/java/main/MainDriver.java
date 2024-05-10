@@ -45,7 +45,7 @@ public class MainDriver {
         deliveryPlatform.register(americanDiner);
 
 
-        DeliveryDriver george = new DeliveryDriver();
+        DeliveryDriver george = new DeliveryDriver("LA County", 3);
         deliveryPlatform.register(george);
 
         Customer c1 = new Customer(deliveryPlatform, "Vegan");
