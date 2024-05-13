@@ -26,7 +26,7 @@ public class DeliveryDriverTest {
         driver = new DeliveryDriver.Builder()
                 .platform(platform)
                 .name("Driver 1")
-                .address("123 Main St")
+                .address("123 Drive Lane")
                 .county("LA County")
                 .shiftNumber(1)
                 .build();
