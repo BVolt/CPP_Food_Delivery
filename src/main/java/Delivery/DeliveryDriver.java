@@ -62,4 +62,7 @@ public class DeliveryDriver {
         }
     }
 
+    public Object getShiftStart() {return this.shiftStart;}
+
+    public Object getShiftEnd() {return this.shiftEnd;}
 }
