@@ -45,8 +45,14 @@ public class MainDriver {
         deliveryPlatform.register(americanDiner);
 
 
-        DeliveryDriver george = new DeliveryDriver("LA County", 2);
-        deliveryPlatform.register(george);
+        DeliveryDriver d1 = new DeliveryDriver.Builder()
+                .platform(deliveryPlatform)
+                .name("Driver 1")
+                .address("123 Drive Lane")
+                .county("LA County")
+                .shiftNumber(2)
+                .build();
+        deliveryPlatform.register(d1);
 
         Customer c1 = new Customer.Builder()
                 .deliveryPlatform(deliveryPlatform)
@@ -56,7 +62,6 @@ public class MainDriver {
                 .dietaryRestrictions("Vegan")
                 .build();
         deliveryPlatform.register(c1);
-
 
         Order order = c1.placeOrder(thaiRestaurant, 3, "Sesame Seeds", "Wasabi");
         if(order != null) {

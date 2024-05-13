@@ -23,13 +23,22 @@ public class DeliveryDriverTest {
 
     @BeforeEach
     public void setUp() {
-        driver = new DeliveryDriver("LA County", 1);
+        driver = new DeliveryDriver.Builder()
+                .platform(platform)
+                .name("Driver 1")
+                .address("123 Main St")
+                .county("LA County")
+                .shiftNumber(1)
+                .build();
         driver.setPlatform(platform);
     }
 
     @Test
     public void testConstructorAndShiftAssignment() {
         assertEquals("LA County", driver.getCounty(), "County should be set correctly.");
+        assertEquals("Driver 1", driver.getName(), "Driver's name should be set correctly.");
+        assertEquals("123 Main St", driver.getAddress(), "Driver's address should be set correctly.");
+
         LocalDate today = LocalDate.now();
         assertEquals(LocalDateTime.of(today, LocalTime.of(8, 0)), driver.getShiftStart(), "Shift start should be at 8 AM for shift 1.");
         assertEquals(LocalDateTime.of(today, LocalTime.of(16, 0)), driver.getShiftEnd(), "Shift end should be at 4 PM for shift 1.");

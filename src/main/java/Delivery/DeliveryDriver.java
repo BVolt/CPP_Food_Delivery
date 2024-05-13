@@ -6,14 +6,19 @@ import java.time.*;
 
 public class DeliveryDriver {
     private CPPFoodDelivery platform;
+    private String name;
+    private String address;
     private String county;
     private int shiftNumber;
     private LocalDateTime shiftStart;
     private LocalDateTime shiftEnd;
 
-    public DeliveryDriver(String county, int shiftNumber) {
-        this.county = county;
-        this.shiftNumber = shiftNumber;
+    private DeliveryDriver(Builder builder) {
+        this.platform = builder.platform;
+        this.name = builder.name;
+        this.address = builder.address;
+        this.county = builder.county;
+        this.shiftNumber = builder.shiftNumber;
         assignShiftStartAndEnd();
     }
 
@@ -65,4 +70,47 @@ public class DeliveryDriver {
     public Object getShiftStart() {return this.shiftStart;}
 
     public Object getShiftEnd() {return this.shiftEnd;}
+
+    public String getName() {return this.name;}
+    public String getAddress() {return this.address;}
+
+    public static class Builder {
+        private CPPFoodDelivery platform;
+        private String name;
+        private String address;
+        private String county;
+        private int shiftNumber;
+
+        public Builder(){
+        }
+
+        public Builder platform(CPPFoodDelivery platform) {
+            this.platform = platform;
+            return this;
+        }
+
+        public Builder name(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder address(String address) {
+            this.address = address;
+            return this;
+        }
+
+        public Builder county(String county) {
+            this.county = county;
+            return this;
+        }
+
+        public Builder shiftNumber(int shiftNumber) {
+            this.shiftNumber = shiftNumber;
+            return this;
+        }
+
+        public DeliveryDriver build() {
+            return new DeliveryDriver(this);
+        }
+    }
 }
