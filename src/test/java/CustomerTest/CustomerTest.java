@@ -7,9 +7,8 @@ import restaurant.Restaurant;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.Mock;
-
+import org.mockito.junit.jupiter.MockitoExtension;
 import java.beans.PropertyChangeEvent;
 
 import static org.mockito.Mockito.*;
@@ -27,18 +26,22 @@ public class CustomerTest {
 
     @BeforeEach
     public void setUp() {
-        customer = new Customer(deliveryPlatform, "Vegan");
+        customer = new Customer.Builder()
+                .deliveryPlatform(deliveryPlatform)
+                .name("Customer 1")
+                .address("123 Main St")
+                .county("LA County")
+                .dietaryRestrictions("Vegan")
+                .build();
     }
 
     @Test
     public void constructorTest() {
         assertNotNull(customer, "Customer instance should not be null");
         assertEquals("Vegan", customer.getDietaryRestriction(), "Dietary restriction should be correctly set");
-    }
-
-    @Test
-    public void testGetDietaryRestriction() {
-        assertEquals("Vegan", customer.getDietaryRestriction(), "Should return correct dietary restriction");
+        assertEquals("Customer 1", customer.getName(), "Customer name should be correctly set");
+        assertEquals("123 Main St", customer.getAddress(), "Customer address should be correctly set");
+        assertEquals("LA County", customer.getCounty(), "Customer county should be correctly set");
     }
 
     @Test

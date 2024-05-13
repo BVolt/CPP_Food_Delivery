@@ -48,7 +48,13 @@ public class MainDriver {
         DeliveryDriver george = new DeliveryDriver("LA County", 2);
         deliveryPlatform.register(george);
 
-        Customer c1 = new Customer(deliveryPlatform, "Vegan");
+        Customer c1 = new Customer.Builder()
+                .deliveryPlatform(deliveryPlatform)
+                .name("Customer 1")
+                .address("123 Main St")
+                .county("LA County")
+                .dietaryRestrictions("Vegan")
+                .build();
         deliveryPlatform.register(c1);
 
 
