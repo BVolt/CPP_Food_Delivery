@@ -65,4 +65,29 @@ public class CustomerTest {
         customer.placeOrder(restaurant, 1);
         verify(newPlatform).placeOrder(restaurant, customer, 1);
     }
+    @Test
+    public void testGetDietaryRestriction() {
+        String expected = "Vegan";
+        String actual = customer.getDietaryRestriction();
+        assertEquals(expected, actual, "returning wrong dietary restriction");
+    }
+    @Test
+    public void testGetName() {
+        String expected = "Customer 1";
+        String actual = customer.getName();
+        assertEquals(expected,actual, "returning wrong customer name");
+    }
+    @Test
+    public void testGetAddress() {
+        String expected = "123 Main St";
+        String actual = customer.getAddress();
+        assertEquals(expected,actual, "returning wrong address");
+    }
+
+    @Test
+    public void testGetCounty() {
+        String expected = "LA County";
+        String actual = customer.getCounty();
+        assertEquals(expected,actual, "returning wrong county");
+    }
 }
