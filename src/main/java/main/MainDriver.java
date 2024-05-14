@@ -51,6 +51,7 @@ public class MainDriver {
         deliveryPlatform.register(americanDiner);
 
         System.out.println("Current time: " + dateTimeFormatter.format(LocalDateTime.now()));
+        System.out.println();
         System.out.println("Available Restaurants at this time:");
         for (Restaurant restaurant : deliveryPlatform.getRestaurants()) {
             if (restaurant.isOpen()) {
@@ -215,16 +216,22 @@ public class MainDriver {
             deliveryPlatform.register(customer);
         }
 
-        System.out.println(c1.getName() + " created a new order.");
-        Order order = c1.placeOrder(thaiRestaurant, 3, "Sesame Seeds", "Wasabi");
-        if(order != null) {
-            DeliveryDriver assignedDriver = order.getDriver();
+        Order order1 = c1.placeOrder(thaiRestaurant, 3, "Sesame Seeds", "Wasabi");
+        if(order1 != null) {
+            DeliveryDriver assignedDriver = order1.getDriver();
             assignedDriver.pickUpOrder();
             assignedDriver.deliverOrder();
-            System.out.println(order);
+            System.out.println();
+            System.out.println(order1);
         }
 
-        System.out.println(c2.getName() + " created a new order.");
-        c2.placeOrder(mexicanRestaurant, 3, ""); //Show restaurant is not open
+        Order order2 = c2.placeOrder(mexicanRestaurant, 3, "");
+        if(order2 != null) {
+            DeliveryDriver assignedDriver = order2.getDriver();
+            assignedDriver.pickUpOrder();
+            assignedDriver.deliverOrder();
+            System.out.println();
+            System.out.println(order2);
+        }
     }
 }

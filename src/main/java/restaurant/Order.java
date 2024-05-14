@@ -66,7 +66,7 @@ public class Order {
                 "- Dietary Restriction: " + dietaryRestriction + "\n" +
                 "- Meal: " + meal + "\n" +
                 "- Driver: " + driver.getName() + "\n" +
-                "- State: " + state + "\n" +
+                "- Status: " + state + "\n" +
                 "- Creation Time: " + (creationTime != null ? dtf.format(creationTime) : "N/A") + "\n" +
                 "- Pick Up Time: " + (pickUpTime != null ? dtf.format(pickUpTime) : "N/A") + "\n" +
                 "- Delivered Time: " + (deliveredTime != null ? dtf.format(deliveredTime) : "N/A") + "\n";

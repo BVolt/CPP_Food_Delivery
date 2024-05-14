@@ -55,6 +55,9 @@ public class CPPFoodDelivery {
     }
 
     public Order placeOrder(Restaurant restaurant, Customer customer, int MenuChoice, String... toppings){
+
+        System.out.println(customer.getName() + " created a new order.");
+
         if(!customers.contains(customer)){
             System.out.println("Customer not registered");
             return null;
