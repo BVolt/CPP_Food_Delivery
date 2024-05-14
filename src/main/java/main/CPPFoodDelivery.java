@@ -42,6 +42,18 @@ public class CPPFoodDelivery {
         driver.setPlatform(this);
     }
 
+    public List<Restaurant> getRestaurants() {
+        return restaurants;
+    }
+
+    public List<Customer> getCustomers() {
+        return customers;
+    }
+
+    public List<DeliveryDriver> getDrivers() {
+        return drivers;
+    }
+
     public Order placeOrder(Restaurant restaurant, Customer customer, int MenuChoice, String... toppings){
         if(!customers.contains(customer)){
             System.out.println("Customer not registered");
@@ -72,6 +84,8 @@ public class CPPFoodDelivery {
 
         Order order = new Order(restaurant, customer, meal, driver);
         assignedOrders.put(driver, order);
+
+        System.out.println("Assigned Driver: " + driver.getName());
 
         return order;
     }

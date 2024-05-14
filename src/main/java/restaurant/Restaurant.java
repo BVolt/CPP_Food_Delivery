@@ -41,6 +41,16 @@ public class Restaurant {
         return !now.isBefore(openingTime) && !now.isAfter(closingTime);
     }
 
+    public String getName(){
+        return this.name;
+    }
+    public LocalTime getOpeningTime(){
+        return this.openingTime;
+    }
+    public LocalTime getClosingTime(){
+        return this.closingTime;
+    }
+
     public String getCounty(){
         return this.county;
     }

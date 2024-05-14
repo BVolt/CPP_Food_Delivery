@@ -3,12 +3,16 @@ package main;
 import Customer.Customer;
 import Delivery.DeliveryDriver;
 import restaurant.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import java.util.Arrays;
 
 public class MainDriver {
     public static void main(String[] args) {
         CPPFoodDelivery deliveryPlatform = CPPFoodDelivery.getInstance();
+
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 
         //Build 4 Restaurants
         Restaurant thaiRestaurant = new Restaurant.Builder()
@@ -45,6 +49,15 @@ public class MainDriver {
         deliveryPlatform.register(mexicanRestaurant);
         deliveryPlatform.register(italianRestaurant);
         deliveryPlatform.register(americanDiner);
+
+        System.out.println("Current time: " + dateTimeFormatter.format(LocalDateTime.now()));
+        System.out.println("Available Restaurants at this time:");
+        for (Restaurant restaurant : deliveryPlatform.getRestaurants()) {
+            if (restaurant.isOpen()) {
+                System.out.println(restaurant.getName() + " (" + restaurant.getOpeningTime() + " - " + restaurant.getClosingTime() + ")");
+            }
+        }
+        System.out.println();
 
         // Build 8 drivers
         DeliveryDriver d1 = new DeliveryDriver.Builder()
@@ -202,13 +215,16 @@ public class MainDriver {
             deliveryPlatform.register(customer);
         }
 
+        System.out.println(c1.getName() + " created a new order.");
         Order order = c1.placeOrder(thaiRestaurant, 3, "Sesame Seeds", "Wasabi");
         if(order != null) {
             DeliveryDriver assignedDriver = order.getDriver();
             assignedDriver.pickUpOrder();
             assignedDriver.deliverOrder();
+            System.out.println(order);
         }
 
-        c1.placeOrder(mexicanRestaurant, 3, ""); //Show restaurant is not open
+        System.out.println(c2.getName() + " created a new order.");
+        c2.placeOrder(mexicanRestaurant, 3, ""); //Show restaurant is not open
     }
 }

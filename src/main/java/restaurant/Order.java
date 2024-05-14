@@ -6,6 +6,7 @@ import Delivery.DeliveryDriver;
 import java.beans.PropertyChangeSupport;
 import java.beans.PropertyChangeListener;
 import java.time.*;
+import java.time.format.DateTimeFormatter;
 
 public class Order {
     private Restaurant restaurant;
@@ -58,17 +59,17 @@ public class Order {
 
     @Override
     public String toString() {
-        return "Order{" +
-                "restaurant=" + restaurant +
-                ", customer=" + customer +
-                ", dietaryRestriction='" + dietaryRestriction + '\'' +
-                ", meal=" + meal +
-                ", driver=" + driver +
-                ", support=" + support +
-                ", state='" + state + '\'' +
-                ", creationTime=" + creationTime +
-                ", pickUpTime=" + pickUpTime +
-                ", deliveredTime=" + deliveredTime +
-                '}';
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        return "Order Details:\n" +
+                "- Restaurant: " + restaurant.getName() + "\n" +
+                "- Customer: " + customer.getName() + "\n" +
+                "- Dietary Restriction: " + dietaryRestriction + "\n" +
+                "- Meal: " + meal + "\n" +
+                "- Driver: " + driver.getName() + "\n" +
+                "- State: " + state + "\n" +
+                "- Creation Time: " + (creationTime != null ? dtf.format(creationTime) : "N/A") + "\n" +
+                "- Pick Up Time: " + (pickUpTime != null ? dtf.format(pickUpTime) : "N/A") + "\n" +
+                "- Delivered Time: " + (deliveredTime != null ? dtf.format(deliveredTime) : "N/A") + "\n";
     }
+
 }
