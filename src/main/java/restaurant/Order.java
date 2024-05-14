@@ -64,7 +64,7 @@ public class Order {
                 "- Restaurant: " + restaurant.getName() + "\n" +
                 "- Customer: " + customer.getName() + "\n" +
                 "- Dietary Restriction: " + dietaryRestriction + "\n" +
-                "- Meal: " + meal + "\n" +
+                "- " + meal + "\n" +
                 "- Driver: " + driver.getName() + "\n" +
                 "- Status: " + state + "\n" +
                 "- Creation Time: " + (creationTime != null ? dtf.format(creationTime) : "N/A") + "\n" +
