@@ -1,13 +1,15 @@
 package RestaurantTest;
-
+import restaurant.*;
 import restaurant.Restaurant;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.time.LocalDate;
+
 import java.time.LocalTime;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 
 
 public class RestaurantTest {
@@ -33,8 +35,31 @@ public class RestaurantTest {
         assertEquals(expected, actual);
     }
     @Test
+    public void testGetName() {
+        String expected = "Test restaurant";
+        String actual = restaurant.getName();
+        assertEquals(expected, actual);
+    }
+    @Test
+    public void testGetOpeningTime() {
+        LocalTime expected = LocalTime.of(10,0);
+        LocalTime actual = restaurant.getOpeningTime();
+        assertEquals(expected, actual);
+    }
+    @Test
+    public void testGetClosingTime() {
+        LocalTime expected = LocalTime.of(23,0);
+        LocalTime actual = restaurant.getClosingTime();
+        assertEquals(expected, actual);
+    }
+    @Test
     public void testGetMeal() {
-        // TO-DO
+        Meal expected = new BasicMeal("Vegan adapted Stir Fry", "Edamame", "Mixed Vegetables", "Soy Sauce");
+        Meal actual = restaurant.getMeal(1, "Vegan");
+
+        String [] expectedArray = {expected.getName(), expected.getProtein(), expected.getCarbs(), expected.getFats()};
+        String [] actualArray = {actual.getName(), actual.getProtein(), actual.getCarbs(), actual.getFats()};
+        assertArrayEquals(expectedArray, actualArray);
     }
 
 }
