@@ -88,7 +88,7 @@ public class CPPFoodDelivery {
         Order order = new Order(restaurant, customer, meal, driver);
         assignedOrders.put(driver, order);
 
-        System.out.println("Assigned Driver: " + driver.getName());
+        System.out.println("Driver assigned: " + driver.getName());
 
         return order;
     }

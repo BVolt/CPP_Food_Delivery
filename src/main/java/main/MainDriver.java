@@ -12,7 +12,7 @@ public class MainDriver {
     public static void main(String[] args) {
         CPPFoodDelivery deliveryPlatform = CPPFoodDelivery.getInstance();
 
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 
         //Build 4 Restaurants
         Restaurant thaiRestaurant = new Restaurant.Builder()
