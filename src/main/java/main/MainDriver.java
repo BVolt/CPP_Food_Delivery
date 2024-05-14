@@ -50,7 +50,7 @@ public class MainDriver {
         deliveryPlatform.register(italianRestaurant);
         deliveryPlatform.register(americanDiner);
 
-        System.out.println("Current time: " + dateTimeFormatter.format(LocalDateTime.now()));
+        System.out.println("Current time: " + dtf.format(LocalDateTime.now()));
         System.out.println();
         System.out.println("Available Restaurants at this time:");
         for (Restaurant restaurant : deliveryPlatform.getRestaurants()) {
