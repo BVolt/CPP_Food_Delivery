@@ -56,21 +56,21 @@ public class CPPFoodDelivery {
 
     public Order placeOrder(Restaurant restaurant, Customer customer, int MenuChoice, String... toppings){
 
-        System.out.println(customer.getName() + " created a new order with " + restaurant.getName() + ".");
+        System.out.println(customer.getName() + " placing a new order with " + restaurant.getName() + ".");
 
         if(!customers.contains(customer)){
-            System.out.println("Customer not registered");
+            System.out.println("Customer not registered\n");
             return null;
         }
 
         if(!restaurants.contains(restaurant)){
-            System.out.println("Restaurant not registerd");
+            System.out.println("Restaurant not registered\n");
             return null;
         }
 
         //Check if open
         if(!restaurant.isOpen()){
-            System.out.println("Restaurant is not open!");
+            System.out.println("Restaurant is not open!\n");
             return null;
         }
 

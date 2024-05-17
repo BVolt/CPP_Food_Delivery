@@ -27,21 +27,21 @@ public class MainDriver {
                 .address("354 Street")
                 .operatingHours("00:00", "13:00")
                 .county("LA County")
-                .cuisineType("Thai")
+                .cuisineType("mexican")
                 .build();
         Restaurant italianRestaurant = new Restaurant.Builder()
                 .name("Litaly")
                 .address("367 Street")
                 .operatingHours("08:00", "21:00")
                 .county("Orange County")
-                .cuisineType("Thai")
+                .cuisineType("italian")
                 .build();
         Restaurant americanDiner = new Restaurant.Builder()
                 .name("The Die ner")
                 .address("5565 Street")
                 .operatingHours("06:00", "17:00")
                 .county("San Bernardino County")
-                .cuisineType("Thai")
+                .cuisineType("american diner")
                 .build();
 
         //Register the restaurants with our mediator
@@ -225,13 +225,22 @@ public class MainDriver {
             System.out.println(order1);
         }
 
-        Order order2 = c2.placeOrder(mexicanRestaurant, 3, "");
+        Order order2 = c2.placeOrder(mexicanRestaurant, 1);
         if(order2 != null) {
             DeliveryDriver assignedDriver = order2.getDriver();
             assignedDriver.pickUpOrder();
             assignedDriver.deliverOrder();
             System.out.println();
             System.out.println(order2);
+        }
+
+        Order order3 = c3.placeOrder(italianRestaurant, 3);
+        if(order3 != null) {
+            DeliveryDriver assignedDriver = order3.getDriver();
+            assignedDriver.pickUpOrder();
+            assignedDriver.deliverOrder();
+            System.out.println();
+            System.out.println(order3);
         }
     }
 }
