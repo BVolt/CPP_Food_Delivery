@@ -77,7 +77,7 @@ public class CPPFoodDelivery {
         //Find available driver
         DeliveryDriver driver = findDeliveryDriver(restaurant);
         if(driver == null){
-            System.out.println("No available delivery driver");
+            System.out.println("No available delivery driver\n");
             return null;
         }
 

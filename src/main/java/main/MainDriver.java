@@ -39,7 +39,7 @@ public class MainDriver {
         Restaurant americanDiner = new Restaurant.Builder()
                 .name("The Die ner")
                 .address("5565 Street")
-                .operatingHours("06:00", "17:00")
+                .operatingHours("06:00", "20:00")
                 .county("San Bernardino County")
                 .cuisineType("american diner")
                 .build();
@@ -74,7 +74,7 @@ public class MainDriver {
                 .name("Driver 2")
                 .address("202 Drive Way")
                 .county("Orange County")
-                .shiftNumber(2)
+                .shiftNumber(3)
                 .build();
 
         DeliveryDriver d3 = new DeliveryDriver.Builder()
@@ -98,7 +98,7 @@ public class MainDriver {
                 .name("Driver 5")
                 .address("505 Drive Way")
                 .county("Orange County")
-                .shiftNumber(2)
+                .shiftNumber(1)
                 .build();
 
         DeliveryDriver d6 = new DeliveryDriver.Builder()
@@ -144,7 +144,7 @@ public class MainDriver {
                 .name("Customer 2")
                 .address("200 Main St")
                 .county("Orange County")
-                .dietaryRestrictions("Gluten-Free")
+                .dietaryRestrictions("None")
                 .build();
 
         Customer c3 = new Customer.Builder()
@@ -152,7 +152,7 @@ public class MainDriver {
                 .name("Customer 3")
                 .address("300 Main St")
                 .county("San Bernardino County")
-                .dietaryRestrictions("Vegan")
+                .dietaryRestrictions("Gluten-Free")
                 .build();
 
         Customer c4 = new Customer.Builder()
@@ -160,7 +160,7 @@ public class MainDriver {
                 .name("Customer 4")
                 .address("400 Main St")
                 .county("LA County")
-                .dietaryRestrictions("Gluten-Free")
+                .dietaryRestrictions("Vegan")
                 .build();
 
         Customer c5 = new Customer.Builder()
@@ -168,7 +168,7 @@ public class MainDriver {
                 .name("Customer 5")
                 .address("500 Main St")
                 .county("Orange County")
-                .dietaryRestrictions("Vegan")
+                .dietaryRestrictions("None")
                 .build();
 
         Customer c6 = new Customer.Builder()
@@ -217,30 +217,28 @@ public class MainDriver {
         }
 
         Order order1 = c1.placeOrder(thaiRestaurant, 3, "Sesame Seeds", "Wasabi");
-        if(order1 != null) {
-            DeliveryDriver assignedDriver = order1.getDriver();
-            assignedDriver.pickUpOrder();
-            assignedDriver.deliverOrder();
-            System.out.println();
-            System.out.println(order1);
-        }
+        moveOrderAlong(order1);
 
         Order order2 = c2.placeOrder(mexicanRestaurant, 1);
-        if(order2 != null) {
-            DeliveryDriver assignedDriver = order2.getDriver();
-            assignedDriver.pickUpOrder();
-            assignedDriver.deliverOrder();
-            System.out.println();
-            System.out.println(order2);
-        }
+        moveOrderAlong(order2);
 
-        Order order3 = c3.placeOrder(italianRestaurant, 3);
-        if(order3 != null) {
-            DeliveryDriver assignedDriver = order3.getDriver();
+        Order order3 = c3.placeOrder(italianRestaurant, 2);
+        moveOrderAlong(order3);
+
+        Order order4 = c4.placeOrder(americanDiner, 4);
+        moveOrderAlong(order4);
+
+        Order order5 = c5.placeOrder(italianRestaurant, 1, "Extra Cheese", "Pepperoni", "Olives");
+        moveOrderAlong(order5);
+    }
+
+    public static void moveOrderAlong(Order order){
+        if(order != null){
+            DeliveryDriver assignedDriver = order.getDriver();
             assignedDriver.pickUpOrder();
             assignedDriver.deliverOrder();
             System.out.println();
-            System.out.println(order3);
+            System.out.println(order);
         }
     }
 }
